@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pirlofig — Personal Website</title>
+<meta name="description" content="Website pribadi Pirlofig — profil, perjalanan TKJ, project, skill, dan kontak.">
+<style>
+:root{
+  --bg:#070b14;--bg2:#0d1322;--card:rgba(17,25,42,.72);--text:#f4f7fb;
+  --muted:#9ca9bd;--line:rgba(255,255,255,.09);--accent:#66e3ff;--accent2:#8b7cff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;background:
+radial-gradient(circle at 80% 10%,rgba(102,227,255,.13),transparent 28%),
+radial-gradient(circle at 10% 30%,rgba(139,124,255,.12),transparent 25%),var(--bg);
+color:var(--text);line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{width:min(1120px,92%);margin:auto}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(7,11,20,.72);
+backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.navin{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.35rem;font-weight:800;letter-spacing:.5px}
+.logo span{color:var(--accent)}
+.links{display:flex;gap:25px;color:var(--muted);font-size:.94rem}
+.links a:hover{color:var(--text)}
+.menu{display:none;background:none;border:0;color:white;font-size:25px}
+.hero{min-height:100vh;display:grid;place-items:center;padding-top:72px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center}
+.badge{display:inline-flex;padding:7px 13px;border:1px solid rgba(102,227,255,.25);border-radius:999px;
+background:rgba(102,227,255,.07);color:var(--accent);font-size:.85rem;margin-bottom:20px}
+h1{font-size:clamp(3rem,8vw,6.4rem);line-height:.95;letter-spacing:-4px}
+h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent}
+.hero p{max-width:650px;color:var(--muted);font-size:1.08rem;margin:25px 0}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:12px 18px;border-radius:12px;border:1px solid var(--line);display:inline-block;font-weight:700}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#06101a;border:0}
+.profile-card{padding:28px;border:1px solid var(--line);background:var(--card);backdrop-filter:blur(18px);
+border-radius:28px;box-shadow:0 25px 80px rgba(0,0,0,.3)}
+.avatar{height:250px;border-radius:22px;background:
+linear-gradient(135deg,rgba(102,227,255,.25),rgba(139,124,255,.18)),
+repeating-linear-gradient(45deg,transparent 0 12px,rgba(255,255,255,.025) 12px 13px);
+display:grid;place-items:center;font-size:5rem;font-weight:900;color:var(--accent);margin-bottom:20px}
+.profile-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+.profile-row:last-child{border:0}.muted{color:var(--muted)}
+section{padding:105px 0}
+.section-head{margin-bottom:38px}.eyebrow{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem}
+h2{font-size:2.5rem;line-height:1.1;margin-top:7px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:25px}
+.card h3{margin-bottom:8px}.card p{color:var(--muted)}
+.timeline{border-left:2px solid rgba(102,227,255,.25);padding-left:25px}
+.item{position:relative;margin-bottom:30px}.item:before{content:"";position:absolute;left:-33px;top:8px;width:13px;height:13px;
+border-radius:50%;background:var(--accent);box-shadow:0 0 20px var(--accent)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.tag{font-size:.8rem;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:#cbd5e1}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.project{min-height:230px;display:flex;flex-direction:column;justify-content:space-between}
+.project .number{font-size:2.5rem;color:rgba(102,227,255,.45);font-weight:900}
+.project a{color:var(--accent);font-weight:700}
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.skill{padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025)}
+.skill-top{display:flex;justify-content:space-between;margin-bottom:10px}.bar{height:7px;background:#182234;border-radius:99px;overflow:hidden}
+.fill{height:100%;width:var(--w);background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.contact-box{padding:28px;border-radius:22px;border:1px solid var(--line);background:var(--card)}
+.contact-item{padding:15px 0;border-bottom:1px solid var(--line)}.contact-item:last-child{border:0}
+footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);text-align:center}
+.reveal{opacity:0;transform:translateY(25px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+@media(max-width:800px){
+ .links{display:none}.menu{display:block}.hero-grid,.grid2,.contact{grid-template-columns:1fr}
+ .projects{grid-template-columns:1fr}.skills{grid-template-columns:1fr}h1{letter-spacing:-2px}
+ .hero{padding-top:110px}.avatar{height:210px}
+}
+</style>
+</head>
+<body>
+<nav><div class="container navin">
+  <a class="logo" href="#home">pirlo<span>fig</span></a>
+  <div class="links">
+    <a href="#about">Tentang</a><a href="#journey">Perjalanan</a><a href="#skills">Skill</a>
+    <a href="#projects">Project</a><a href="#contact">Kontak</a>
+  </div>
+  <button class="menu" onclick="document.querySelector('.links').classList.toggle('mobile')">☰</button>
+</div></nav>
+
+<header class="hero" id="home">
+<div class="container hero-grid">
+ <div class="reveal">
+   <div class="badge">PERSONAL WEBSITE • PIRLOFIG</div>
+   <h1>Hi, I'm<br><span>Pirlofig.</span></h1>
+   <p>Seseorang yang tertarik dengan dunia teknologi, jaringan komputer, server, website, dan berbagai project digital. Website ini menjadi ruang untuk memperkenalkan diri, perjalanan belajar, skill, dan karya saya.</p>
+   <div class="btns"><a class="btn primary" href="#projects">Lihat Project</a><a class="btn" href="#contact">Hubungi Saya</a></div>
+ </div>
+ <div class="profile-card reveal">
+   <div class="avatar">PF</div>
+   <div class="profile-row"><span class="muted">Nama</span><b>Pirlofig</b></div>
+   <div class="profile-row"><span class="muted">Fokus</span><b>IT & Networking</b></div>
+   <div class="profile-row"><span class="muted">Bidang</span><b>TKJ</b></div>
+   <div class="profile-row"><span class="muted">Status</span><b>Learning & Building</b></div>
+ </div>
+</div>
+</header>
+
+<section id="about"><div class="container">
+ <div class="section-head reveal"><div class="eyebrow">01 — About Me</div><h2>Tentang Saya</h2></div>
+ <div class="grid2">
+  <div class="card reveal"><h3>Siapa saya?</h3><p>Saya adalah pribadi yang senang belajar hal baru, terutama yang berhubungan dengan teknologi dan komputer. Saya suka mencoba konfigurasi, mencari penyebab masalah, kemudian menemukan solusi yang bisa diterapkan.</p></div>
+  <div class="card reveal"><h3>Yang saya sukai</h3><p>Networking, MikroTik, server Linux, CCTV/IP camera, web development, troubleshooting komputer, serta project kreatif berbasis teknologi.</p><div class="tags"><span class="tag">Networking</span><span class="tag">Linux</span><span class="tag">Web</span><span class="tag">CCTV</span><span class="tag">MikroTik</span></div></div>
+ </div>
+</div></section>
+
+<section id="journey"><div class="container">
+ <div class="section-head reveal"><div class="eyebrow">02 — Journey</div><h2>Perjalanan Belajar</h2></div>
+ <div class="timeline">
+  <div class="item reveal"><h3>TKJ — Dasar Teknologi</h3><p class="muted">Mempelajari jaringan komputer, IP address, topologi, perangkat jaringan, keamanan jaringan, dan troubleshooting.</p></div>
+  <div class="item reveal"><h3>Networking Lab</h3><p class="muted">Eksplorasi MikroTik, DHCP, Hotspot, Wi-Fi, routing, serta simulasi jaringan menggunakan Cisco Packet Tracer.</p></div>
+  <div class="item reveal"><h3>Server & Web</h3><p class="muted">Mengenal Linux server, Apache, PHP, MariaDB, phpMyAdmin, WordPress, DNS/BIND9, dan pengelolaan website.</p></div>
+  <div class="item reveal"><h3>Project & Troubleshooting</h3><p class="muted">Membangun project sekolah dan membantu menyelesaikan berbagai masalah jaringan, komputer, server, dan perangkat IP.</p></div>
+ </div>
+</div></section>
+
+<section id="skills"><div class="container">
+ <div class="section-head reveal"><div class="eyebrow">03 — Skills</div><h2>Keahlian & Teknologi</h2></div>
+ <div class="skills">
+  <div class="skill reveal"><div class="skill-top"><b>Computer Networking</b><span>90%</span></div><div class="bar"><div class="fill" style="--w:90%"></div></div></div>
+  <div class="skill reveal"><div class="skill-top"><b>MikroTik</b><span>85%</span></div><div class="bar"><div class="fill" style="--w:85%"></div></div></div>
+  <div class="skill reveal"><div class="skill-top"><b>Linux Server</b><span>80%</span></div><div class="bar"><div class="fill" style="--w:80%"></div></div></div>
+  <div class="skill reveal"><div class="skill-top"><b>Web Development</b><span>78%</span></div><div class="bar"><div class="fill" style="--w:78%"></div></div></div>
+  <div class="skill reveal"><div class="skill-top"><b>Cisco / Packet Tracer</b><span>82%</span></div><div class="bar"><div class="fill" style="--w:82%"></div></div></div>
+  <div class="skill reveal"><div class="skill-top"><b>Troubleshooting</b><span>88%</span></div><div class="bar"><div class="fill" style="--w:88%"></div></div></div>
+ </div>
+</div></section>
+
+<section id="projects"><div class="container">
+ <div class="section-head reveal"><div class="eyebrow">04 — Projects</div><h2>Project yang Pernah Dikerjakan</h2></div>
+ <div class="projects">
+  <div class="card project reveal"><div><div class="number">01</div><h3>Jaringan CCTV</h3><p>Eksplorasi jaringan kamera IP, PoE, switch, pencarian IP, dan konfigurasi perangkat CCTV.</p></div><a href="#contact">Project detail →</a></div>
+  <div class="card project reveal"><div><div class="number">02</div><h3>Network Simulation</h3><p>Perancangan LAN dan topologi jaringan menggunakan Cisco Packet Tracer untuk kebutuhan pembelajaran.</p></div><a href="#contact">Project detail →</a></div>
+  <div class="card project reveal"><div><div class="number">03</div><h3>Web & Server</h3><p>Membangun website dan lingkungan server menggunakan Apache, PHP, MariaDB, DNS, dan WordPress.</p></div><a href="#contact">Project detail →</a></div>
+  <div class="card project reveal"><div><div class="number">04</div><h3>Diskola</h3><p>Konsep aplikasi/web sekolah dengan fitur buku induk, kalender, rombel, alumni, dan presensi.</p></div><a href="#contact">Project detail →</a></div>
+  <div class="card project reveal"><div><div class="number">05</div><h3>Wi-Fi & MikroTik</h3><p>Eksperimen konfigurasi DHCP, Hotspot, SSID, band Wi-Fi, dan troubleshooting koneksi jaringan.</p></div><a href="#contact">Project detail →</a></div>
+  <div class="card project reveal"><div><div class="number">06</div><h3>Creative Web</h3><p>Membuat berbagai halaman web personal dan project kreatif dengan HTML, CSS, dan JavaScript.</p></div><a href="#contact">Project detail →</a></div>
+ </div>
+</div></section>
+
+<section><div class="container">
+ <div class="section-head reveal"><div class="eyebrow">05 — Beyond Tech</div><h2>Di Luar Teknologi</h2></div>
+ <div class="grid2">
+  <div class="card reveal"><h3>⚽ Sepak Bola</h3><p>Saya juga tertarik dengan dunia sepak bola dan futsal, termasuk taktik, formasi, pemain, kompetisi, dan perkembangan teknologi dalam olahraga.</p></div>
+  <div class="card reveal"><h3>🎨 Creative Side</h3><p>Selain teknologi, saya suka membuat konsep visual, website, dan berbagai project digital yang menggabungkan kreativitas dengan kemampuan teknis.</p></div>
+ </div>
+</div></section>
+
+<section id="contact"><div class="container">
+ <div class="section-head reveal"><div class="eyebrow">06 — Contact</div><h2>Mari Terhubung</h2></div>
+ <div class="contact">
+  <div class="contact-box reveal"><h3>Let's build something.</h3><p class="muted">Untuk demo, project, kolaborasi, atau sekadar ngobrol tentang teknologi.</p></div>
+  <div class="contact-box reveal">
+   <div class="contact-item"><span class="muted">Email</span><br><b>emailkamu@example.com</b></div>
+   <div class="contact-item"><span class="muted">Instagram</span><br><b>@usernamekamu</b></div>
+   <div class="contact-item"><span class="muted">GitHub</span><br><b>github.com/usernamekamu</b></div>
+  </div>
+ </div>
+</div></section>
+
+<footer>© <span id="year"></span> Pirlofig. Built with HTML, CSS & JavaScript.</footer>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(x=>obs.observe(x));
+</script>
+</body>
+</html>
