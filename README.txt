@@ -20,3 +20,6 @@ CARA MENJALANKAN:
 CATATAN:
 - Email, Instagram, GitHub, dan data pribadi di index.html masih placeholder.
 - Website tidak membutuhkan internet untuk CSS/JavaScript karena semuanya lokal.
+git add .
+git commit -M "pirlo"
+git push -u origin main
